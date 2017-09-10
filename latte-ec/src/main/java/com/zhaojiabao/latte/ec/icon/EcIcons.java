@@ -9,7 +9,7 @@ import com.joanzapata.iconify.Icon;
 public enum EcIcons implements Icon {
     icon_sunny('\ue6b1');
 
-    private char character;
+    char character;
 
     EcIcons(char character) {
         this.character = character;
