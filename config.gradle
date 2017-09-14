@@ -8,4 +8,14 @@ ext {
             versionCode      : 1,
             versionName      : "1.0"
     ]
+
+    dependencies = [
+            appcompat             : 'com.android.support:appcompat-v7:25.3.1',
+            iconifyIonicons       : 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2',
+            iconifyFontawesome    : 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2',
+            fragmentation         : 'me.yokeyword:fragmentation:1.1.6',
+            fragmentationSwipeback: 'me.yokeyword:fragmentation-swipeback:1.1.6',
+            butterknife           : 'com.jakewharton:butterknife:8.8.1',
+            butterknifeCompiler   : 'com.jakewharton:butterknife-compiler:8.8.1'
+    ]
 }

@@ -27,17 +27,14 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
     compile project(':latte-annotations')
 
-    compile 'com.joanzapata.iconify:android-iconify-ionicons:2.2.2'
-    compile 'com.joanzapata.iconify:android-iconify-fontawesome:2.2.2'
-
-    compile 'me.yokeyword:fragmentation:1.1.6'
-    compile 'me.yokeyword:fragmentation-swipeback:1.1.6'
-
-    compile 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    compile rootProject.ext.dependencies.appcompat
+    compile rootProject.ext.dependencies.iconifyIonicons
+    compile rootProject.ext.dependencies.iconifyFontawesome
+    compile rootProject.ext.dependencies.fragmentation
+    compile rootProject.ext.dependencies.fragmentationSwipeback
+    compile rootProject.ext.dependencies.butterknife
+    annotationProcessor rootProject.ext.dependencies.butterknifeCompiler
 }
