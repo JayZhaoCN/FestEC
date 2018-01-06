@@ -16,6 +16,9 @@ ext {
             fragmentation         : 'me.yokeyword:fragmentation:1.1.6',
             fragmentationSwipeback: 'me.yokeyword:fragmentation-swipeback:1.1.6',
             butterknife           : 'com.jakewharton:butterknife:8.8.1',
-            butterknifeCompiler   : 'com.jakewharton:butterknife-compiler:8.8.1'
+            butterknifeCompiler   : 'com.jakewharton:butterknife-compiler:8.8.1',
+            retrofit              : 'com.squareup.retrofit2:retrofit:2.3.0',
+            okhttp                : 'com.squareup.okhttp3:okhttp:3.9.1',
+            scalars               : 'com.squareup.retrofit2:converter-scalars:2.3.0'
     ]
 }

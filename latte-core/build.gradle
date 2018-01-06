@@ -36,5 +36,8 @@ dependencies {
     compile rootProject.ext.dependencies.fragmentation
     compile rootProject.ext.dependencies.fragmentationSwipeback
     compile rootProject.ext.dependencies.butterknife
+    compile rootProject.ext.dependencies.retrofit
+    compile rootProject.ext.dependencies.okhttp
+    compile rootProject.ext.dependencies.scalars
     annotationProcessor rootProject.ext.dependencies.butterknifeCompiler
 }
