@@ -14,21 +14,19 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  * @author zhaojiabao (zhaojiabao@huami.com)
  */
 
-public class RestCreator {
+class RestCreator {
 
     private static class ParamsHolder {
-        public static final WeakHashMap<String, Object> PARAMS = new WeakHashMap<>();
+        static final WeakHashMap<String, Object> PARAMS = new WeakHashMap<>();
     }
 
-    public static WeakHashMap<String, Object> getParams() {
+    static WeakHashMap<String, Object> getParams() {
         return ParamsHolder.PARAMS;
     }
 
     private static final class RetrofitHolder {
-        private static final String BASE_URL
-                = (String) Latte.getConfigurations().get(ConfigType.API_HOST.name());
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl((String) Latte.getConfigurations().get(ConfigType.API_HOST.name()))
                 .client(OKHttpHolder.OK_HTTP_CLIENT)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
@@ -46,7 +44,7 @@ public class RestCreator {
                 = RetrofitHolder.RETROFIT_CLIENT.create(RestService.class);
     }
 
-    public static RestService getService() {
+    static RestService getService() {
         return RestServiceHolder.REST_SERVICE;
     }
 }

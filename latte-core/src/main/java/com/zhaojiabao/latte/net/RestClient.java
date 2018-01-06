@@ -1,7 +1,5 @@
 package com.zhaojiabao.latte.net;
 
-import android.util.Log;
-
 import com.zhaojiabao.latte.net.callbacks.IError;
 import com.zhaojiabao.latte.net.callbacks.IFailure;
 import com.zhaojiabao.latte.net.callbacks.IRequest;
@@ -29,10 +27,13 @@ public class RestClient {
     private final RequestBody BODY;
 
 
-    public RestClient(String url,
-                      Map<String, Object> params,
-                      IRequest request, ISuccess success,
-                      IFailure failure, IError error, RequestBody body) {
+    RestClient(String url,
+               Map<String, Object> params,
+               IRequest request,
+               ISuccess success,
+               IFailure failure,
+               IError error,
+               RequestBody body) {
         URL = url;
         PARAMS.putAll(params);
         REQUEST = request;
@@ -47,31 +48,31 @@ public class RestClient {
     }
 
     private void request(HttpMethod method) {
-        final RestService service = RestCreator.getService();
+        RestService service = RestCreator.getService();
         Call<String> call = null;
-        Log.i("JayLog", "request is null: " + (REQUEST == null));
         if (REQUEST != null) {
             REQUEST.onRequestStart();
-            switch (method) {
-                case GET:
-                    call = service.get(URL, PARAMS);
-                    break;
-                case POST:
-                    call = service.post(URL, PARAMS);
-                    break;
-                case PUT:
-                    call = service.put(URL, PARAMS);
-                    break;
-                case DELETE:
-                    call = service.delete(URL, PARAMS);
-                    break;
-                default:
-                    break;
-            }
-            Log.i("JayLog", "call is null: " + (call == null));
-            if (call != null) {
-                call.enqueue(getRequestCallback());
-            }
+        }
+
+        switch (method) {
+            case GET:
+                call = service.get(URL, PARAMS);
+                break;
+            case POST:
+                call = service.post(URL, PARAMS);
+                break;
+            case PUT:
+                call = service.put(URL, PARAMS);
+                break;
+            case DELETE:
+                call = service.delete(URL, PARAMS);
+                break;
+            default:
+                break;
+        }
+        if (call != null) {
+            //异步请求
+            call.enqueue(getRequestCallback());
         }
     }
 

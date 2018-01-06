@@ -22,6 +22,7 @@ public class RestClientBuilder {
     private ISuccess mSuccess;
     private IFailure mFailure;
     private IError mError;
+    //raw params
     private RequestBody mBody;
 
     //保证RestClientBuilder只能由RestClient创建
@@ -44,11 +45,12 @@ public class RestClientBuilder {
     }
 
     public RestClientBuilder raw(String raw) {
-        this.mBody = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"), raw);
+        this.mBody = RequestBody.create
+                (MediaType.parse("application/json;charset=UTF-8"), raw);
         return this;
     }
 
-    public final RestClientBuilder request(IRequest request) {
+    public final RestClientBuilder onRequest(IRequest request) {
         this.mRequest = request;
         return this;
     }
@@ -65,11 +67,6 @@ public class RestClientBuilder {
 
     public final RestClientBuilder error(IError error) {
         this.mError = error;
-        return this;
-    }
-
-    public final RestClientBuilder body(RequestBody body) {
-        this.mBody = body;
         return this;
     }
 

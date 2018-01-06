@@ -11,7 +11,6 @@ import retrofit2.Response;
  */
 
 public class RequestCallbacks implements Callback<String> {
-
     private final IRequest REQUEST;
     private final ISuccess SUCCESS;
     private final IFailure FAILURE;
@@ -34,10 +33,16 @@ public class RequestCallbacks implements Callback<String> {
                 if (SUCCESS != null) {
                     SUCCESS.onSuccess(response.body());
                 }
+                if (REQUEST != null) {
+                    REQUEST.onRequestEnd();
+                }
             }
         } else {
             if (ERROR != null) {
                 ERROR.onError(response.code(), response.message());
+            }
+            if (REQUEST != null) {
+                REQUEST.onRequestEnd();
             }
         }
     }

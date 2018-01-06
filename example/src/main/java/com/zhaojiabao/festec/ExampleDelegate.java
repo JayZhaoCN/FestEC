@@ -48,7 +48,7 @@ public class ExampleDelegate extends LatteDelegate {
 
                     }
                 })
-                .request(new IRequest() {
+                .onRequest(new IRequest() {
                     @Override
                     public void onRequestStart() {
                         Log.i("JayLog", "onRequest start");
