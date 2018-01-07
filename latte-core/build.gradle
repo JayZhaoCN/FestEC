@@ -39,5 +39,6 @@ dependencies {
     compile rootProject.ext.dependencies.retrofit
     compile rootProject.ext.dependencies.okhttp
     compile rootProject.ext.dependencies.scalars
+    compile rootProject.ext.dependencies.av_loading
     annotationProcessor rootProject.ext.dependencies.butterknifeCompiler
 }

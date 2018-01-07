@@ -1,6 +1,10 @@
 package com.zhaojiabao.latte.net.callbacks;
 
+import android.os.Handler;
 import android.support.annotation.NonNull;
+
+import com.zhaojiabao.latte.ui.LatteLoader;
+import com.zhaojiabao.latte.ui.LoaderStyle;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -15,15 +19,18 @@ public class RequestCallbacks implements Callback<String> {
     private final ISuccess SUCCESS;
     private final IFailure FAILURE;
     private final IError ERROR;
+    private final LoaderStyle LOADER_STYLE;
 
     public RequestCallbacks(IRequest request,
                             ISuccess success,
                             IFailure failure,
-                            IError error) {
+                            IError error,
+                            LoaderStyle loaderStyle) {
         REQUEST = request;
         SUCCESS = success;
         FAILURE = failure;
         ERROR = error;
+        LOADER_STYLE = loaderStyle;
     }
 
     @Override
@@ -44,6 +51,15 @@ public class RequestCallbacks implements Callback<String> {
             if (REQUEST != null) {
                 REQUEST.onRequestEnd();
             }
+        }
+
+        if (LOADER_STYLE != null) {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    LatteLoader.stopLoading();
+                }
+            }, 3000);
         }
     }
 

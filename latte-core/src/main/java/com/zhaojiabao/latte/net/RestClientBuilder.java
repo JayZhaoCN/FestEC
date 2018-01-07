@@ -1,9 +1,12 @@
 package com.zhaojiabao.latte.net;
 
+import android.content.Context;
+
 import com.zhaojiabao.latte.net.callbacks.IError;
 import com.zhaojiabao.latte.net.callbacks.IFailure;
 import com.zhaojiabao.latte.net.callbacks.IRequest;
 import com.zhaojiabao.latte.net.callbacks.ISuccess;
+import com.zhaojiabao.latte.ui.LoaderStyle;
 
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -24,14 +27,16 @@ public class RestClientBuilder {
     private IError mError;
     //raw params
     private RequestBody mBody;
+    private LoaderStyle mLoaderStyle;
+    private Context mContext;
 
     //保证RestClientBuilder只能由RestClient创建
     RestClientBuilder() {
     }
 
     public final RestClientBuilder url(String url) {
-         this.mUrl = url;
-         return this;
+        this.mUrl = url;
+        return this;
     }
 
     public final RestClientBuilder params(WeakHashMap<String, Object> params) {
@@ -70,7 +75,19 @@ public class RestClientBuilder {
         return this;
     }
 
+    public final RestClientBuilder loader(Context context, LoaderStyle style) {
+        mContext = context;
+        mLoaderStyle = style;
+        return this;
+    }
+
+    public RestClientBuilder loader(Context context) {
+        mContext = context;
+        mLoaderStyle = LoaderStyle.BallSpinFadeLoaderIndicator;
+        return this;
+    }
+
     public final RestClient build() {
-        return new RestClient(mUrl, PARAMS, mRequest, mSuccess, mFailure, mError, mBody) ;
+        return new RestClient(mUrl, PARAMS, mRequest, mSuccess, mFailure, mError, mBody, mLoaderStyle, mContext);
     }
 }

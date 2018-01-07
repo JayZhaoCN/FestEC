@@ -11,6 +11,7 @@ import com.zhaojiabao.latte.net.callbacks.IError;
 import com.zhaojiabao.latte.net.callbacks.IFailure;
 import com.zhaojiabao.latte.net.callbacks.IRequest;
 import com.zhaojiabao.latte.net.callbacks.ISuccess;
+import com.zhaojiabao.latte.ui.LoaderStyle;
 
 /**
  * @author zhaojiabao 2017/9/13
@@ -59,6 +60,7 @@ public class ExampleDelegate extends LatteDelegate {
                         Log.i("JayLog", "onRequest end");
                     }
                 })
+                .loader(getContext(), LoaderStyle.PacmanIndicator)
                 .build()
                 .get();
     }

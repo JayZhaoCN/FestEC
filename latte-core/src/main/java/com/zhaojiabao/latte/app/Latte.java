@@ -19,7 +19,7 @@ public final class Latte {
         return Configurator.getInstance().getLatteConfigs();
     }
 
-    public static final Context getApplication() {
+    public static Context getApplication() {
         return (Context) getConfigurations().get(ConfigType.APPLICATION_CONTEXT.name());
     }
 }

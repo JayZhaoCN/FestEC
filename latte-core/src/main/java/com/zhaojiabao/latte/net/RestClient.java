@@ -1,10 +1,14 @@
 package com.zhaojiabao.latte.net;
 
+import android.content.Context;
+
 import com.zhaojiabao.latte.net.callbacks.IError;
 import com.zhaojiabao.latte.net.callbacks.IFailure;
 import com.zhaojiabao.latte.net.callbacks.IRequest;
 import com.zhaojiabao.latte.net.callbacks.ISuccess;
 import com.zhaojiabao.latte.net.callbacks.RequestCallbacks;
+import com.zhaojiabao.latte.ui.LatteLoader;
+import com.zhaojiabao.latte.ui.LoaderStyle;
 
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -25,6 +29,8 @@ public class RestClient {
     private final IFailure FAILURE;
     private final IError ERROR;
     private final RequestBody BODY;
+    private final LoaderStyle LOADER_STYLE;
+    private final Context CONTEXT;
 
 
     RestClient(String url,
@@ -33,7 +39,9 @@ public class RestClient {
                ISuccess success,
                IFailure failure,
                IError error,
-               RequestBody body) {
+               RequestBody body,
+               LoaderStyle style,
+               Context context) {
         URL = url;
         PARAMS.putAll(params);
         REQUEST = request;
@@ -41,6 +49,8 @@ public class RestClient {
         FAILURE = failure;
         ERROR = error;
         BODY = body;
+        LOADER_STYLE = style;
+        CONTEXT = context;
     }
 
     public static RestClientBuilder builder() {
@@ -52,6 +62,10 @@ public class RestClient {
         Call<String> call = null;
         if (REQUEST != null) {
             REQUEST.onRequestStart();
+        }
+
+        if (LOADER_STYLE != null) {
+            LatteLoader.showLoading(CONTEXT, LOADER_STYLE);
         }
 
         switch (method) {
@@ -77,7 +91,7 @@ public class RestClient {
     }
 
     private Callback<String> getRequestCallback() {
-        return new RequestCallbacks(REQUEST, SUCCESS, FAILURE, ERROR);
+        return new RequestCallbacks(REQUEST, SUCCESS, FAILURE, ERROR, LOADER_STYLE);
     }
 
     public final void get() {
