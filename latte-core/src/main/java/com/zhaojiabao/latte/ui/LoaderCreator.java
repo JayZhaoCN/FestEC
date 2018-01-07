@@ -12,7 +12,7 @@ import java.util.WeakHashMap;
  * @author zhaojiabao (zhaojiabao@huami.com)
  */
 
-public final class LoaderCreator {
+final class LoaderCreator {
     private static final WeakHashMap<String, Indicator> LOADING_MAP = new WeakHashMap<>();
 
     static AVLoadingIndicatorView create(Context context, String type) {

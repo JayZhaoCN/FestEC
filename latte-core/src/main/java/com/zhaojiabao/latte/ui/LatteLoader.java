@@ -18,18 +18,18 @@ import java.util.List;
  */
 
 public class LatteLoader {
-
     private static final int LOADER_SIZE_SCALE = 8;
     private static final int LOADER_OFFSET_SCALE = 10;
 
+    //TODO 这是一个static的数组, 里面放着Dialog, 如果一直持有Dialog, Dialog又去持有Activity, 似乎会有内存泄露的风险
     private static final List<AppCompatDialog> LOADERS = new ArrayList<>();
-    public static final String DEFAULT_LOADER = LoaderStyle.BallSpinFadeLoaderIndicator.name();
+    public static final LoaderStyle DEFAULT_LOADER = LoaderStyle.BallSpinFadeLoaderIndicator;
 
     public static void showLoading(Context context, LoaderStyle loaderStyle) {
         showLoading(context, loaderStyle.name());
     }
 
-    public static void showLoading(Context context, String type) {
+    private static void showLoading(Context context, String type) {
         final AppCompatDialog dialog = new AppCompatDialog(context, R.style.dialog);
         AVLoadingIndicatorView loadingView = LoaderCreator.create(context, type);
         dialog.setContentView(loadingView);

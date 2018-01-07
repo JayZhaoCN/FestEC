@@ -6,6 +6,7 @@ import com.zhaojiabao.latte.net.callbacks.IError;
 import com.zhaojiabao.latte.net.callbacks.IFailure;
 import com.zhaojiabao.latte.net.callbacks.IRequest;
 import com.zhaojiabao.latte.net.callbacks.ISuccess;
+import com.zhaojiabao.latte.ui.LatteLoader;
 import com.zhaojiabao.latte.ui.LoaderStyle;
 
 import java.util.Map;
@@ -83,7 +84,7 @@ public class RestClientBuilder {
 
     public RestClientBuilder loader(Context context) {
         mContext = context;
-        mLoaderStyle = LoaderStyle.BallSpinFadeLoaderIndicator;
+        mLoaderStyle = LatteLoader.DEFAULT_LOADER;
         return this;
     }
 
