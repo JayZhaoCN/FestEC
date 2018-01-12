@@ -15,10 +15,13 @@ public final class Latte {
         return Configurator.getInstance();
     }
 
-    public static HashMap<String, Object> getConfigurations() {
+    private static HashMap<String, Object> getConfigurations() {
         return Configurator.getInstance().getLatteConfigs();
     }
 
+    /**
+     * 获取Application Context
+     */
     public static Context getApplication() {
         return (Context) getConfigurations().get(ConfigType.APPLICATION_CONTEXT.name());
     }

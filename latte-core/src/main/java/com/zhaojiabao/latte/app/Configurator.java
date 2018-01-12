@@ -13,6 +13,9 @@ import java.util.HashMap;
 
 public class Configurator {
 
+    /**
+     * 存放所有配置信息
+     */
     private static final HashMap<String, Object> LATTE_CONFIGS = new HashMap<>();
 
     private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
@@ -36,7 +39,7 @@ public class Configurator {
         LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(), false);
     }
 
-    public static Configurator getInstance() {
+    static Configurator getInstance() {
         return Holder.INSTANCE;
     }
 
@@ -58,7 +61,7 @@ public class Configurator {
         return this;
     }
 
-    private void checkConfiguration() {
+    private static void checkConfiguration() {
         final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigType.CONFIG_READY.name());
         if (!isReady) {
             throw new RuntimeException("Configuration is not ready, call Configure");
@@ -66,7 +69,7 @@ public class Configurator {
     }
 
     @SuppressWarnings("unchecked")
-    final <T> T getConfiguration(Enum<ConfigType> key) {
+    public static <T> T getConfiguration(ConfigType key) {
         checkConfiguration();
         return (T) LATTE_CONFIGS.get(key.name());
     }

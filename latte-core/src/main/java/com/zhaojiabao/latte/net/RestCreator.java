@@ -1,7 +1,7 @@
 package com.zhaojiabao.latte.net;
 
 import com.zhaojiabao.latte.app.ConfigType;
-import com.zhaojiabao.latte.app.Latte;
+import com.zhaojiabao.latte.app.Configurator;
 
 import java.util.WeakHashMap;
 import java.util.concurrent.TimeUnit;
@@ -26,7 +26,7 @@ class RestCreator {
 
     private static final class RetrofitHolder {
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
-                .baseUrl((String) Latte.getConfigurations().get(ConfigType.API_HOST.name()))
+                .baseUrl((String) Configurator.getConfiguration(ConfigType.API_HOST))
                 .client(OKHttpHolder.OK_HTTP_CLIENT)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();

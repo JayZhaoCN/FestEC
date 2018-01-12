@@ -6,7 +6,7 @@ import com.zhaojiabao.latte.delegates.LatteDelegate;
 public class ExampleActivity extends ProxyActivity {
 
     @Override
-    public LatteDelegate setRootDelegate() {
+    public LatteDelegate getRootDelegate() {
         return new ExampleDelegate();
     }
 }
